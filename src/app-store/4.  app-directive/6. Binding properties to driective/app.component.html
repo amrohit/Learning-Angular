@@ -20,16 +20,6 @@
             {{ even }}
           </li>
         </div>
-        <!-- ng-template is a element which itself is not rendered but which allows us to define a template at the end for angular to use, once its determines that at this template some element needs to be render because this condtion is true in this case
-         -> This is behind the scene what * transform it to
-         -->
-        <ng-template [ngIf]="!onlyOdd">
-            <div *ngIf="!onlyOdd">
-                <li class="list-group-item" *ngFor="let even of evenNumbers" [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}">
-                  {{ even }}
-                </li>
-              </div>
-        </ng-template>
       </ul>
       <p appBasicHighlight>Style me with basic directive</p>
       <!-- Used custom property binding here -->
