@@ -23,8 +23,6 @@ export class AccountComponent implements OnInit {
   }
   onSetTo(status: string) {
     this.accountsService.updateStatus(this.id, status);
-    //emitting a service setup in the service
-    this.accountsService.statusUpdated.emit(status);
     // this.statusChanged.emit({
     //   id: this.id,
     //   newStatus: status

@@ -5,19 +5,14 @@ import { AccountsService } from "../accounts.service";
 @Component({
   selector: "app-new-account",
   templateUrl: "./new-account.component.html",
-  styleUrls: ["./new-account.component.css"]
- // providers: [LoggingService]
+  styleUrls: ["./new-account.component.css"],
+  providers: [LoggingService]
 })
 export class NewAccountComponent implements OnInit {
   //  @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
 
   constructor(private loggingService: LoggingService,
-              private accountService: AccountsService) {
-              //event emitter at the end wraps something observable
-                this.accountService.statusUpdated.subscribe(
-                  (status: string) => alert('New Status ' + status)
-                )
-              }
+              private accountService: AccountsService) {}
 
   ngOnInit() {}
 
@@ -29,8 +24,8 @@ export class NewAccountComponent implements OnInit {
     //   status: accountStatus
     // }); No longer we are listening to this event,so commented out
 
-    //using our service below without instantiating our own. angular does for us (we will use now our loggin service in the accounts service)
-    // this.loggingService.logStatusChange(accountStatus);
+    //using our service below without instantiating our own. angular does for us
+    this.loggingService.logStatusChange(accountStatus);
 
     //Should not be used service in this day, angular provide a better way
     // const service = new LoggingService();
