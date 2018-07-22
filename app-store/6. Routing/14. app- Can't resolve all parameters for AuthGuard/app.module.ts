@@ -1,4 +1,5 @@
 
+
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -16,6 +17,10 @@ import { ServersService } from "./servers/servers.service";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+
 
 
 @NgModule({
@@ -36,7 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
     // RouterModule.forRoot(appRoutes) //Registering our routes so angular knows it
   ],
-  providers: [ServersService],
+  providers: [ServersService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
