@@ -1,0 +1,60 @@
+we create a can-deactive-guard.service.ts file as below:
+
+It seems like in this file, we have an interface and in our edit-server.component.ts, we implement this interface. Now we have CanComponentDeactive interface, edit-server.component.ts which inplement this interface, and CanDeactivateGuard class as below.
+
+Q1: How do these three pieces of code coordinate to work? In edit-server.component.html,  once we change the content and go to another route, then what happens to those three pieces of code? or how they work at this moment?
+
+Q2: In CanDeactivateGuard class, the return value "component.canDeactivate( )", does this method refer to the implemented method in edit-server.component.ts? So actually, it invokes that implemented method then gets its return value to return right?
+
+Thank you!
+
+export interface CanComponentDeactivate {
+  canDeactivate: () => Observable<boolean>| Promise<boolean> | boolean;
+}
+
+export class CanDeactivateGuard implements  CanDeactivate<CanComponentDeactivate> {
+
+  canDeactivate(component: CanComponentDeactivate,
+                currentRoute: ActivatedRouteSnapshot,
+                currentState: RouterStateSnapshot,
+                nextState?: RouterStateSnapshot)
+  : Observable<boolean>| Promise<boolean> | boolean {
+    return component.canDeactivate();
+  }
+}
+
+----------------------------
+
+I think it should become clearer if you simplyfy the above code first and replace it by ...
+
+export class CanDeactivateGuard implements CanDeactivate<EditServerComponent> {
+
+  canDeactivate(component:    EditServerComponent,
+                currentRoute: ActivatedRouteSnapshot,
+                currentState: RouterStateSnapshot,
+                nextState?:   RouterStateSnapshot)
+  : Observable<boolean> | Promise<boolean> | boolean {
+    return component.canDeactivate();
+  }
+}
+(... and delete implements CanComponentDeactivate from the EditServerComponent ).
+
+CanDeacivate  needs a type, but it is not needed (only more generic) to create an interface which the component has to implement.
+
+
+____________________ NEXT ---------------------------------------
+assumed that UserEditGuard is, as it‘s name says, only needed to guard the user/x/edit route – that writing two different canDeactivate methods in two classes and defining an interface are not needed?
+
+I think, in this case it would be enough to write only this short implementation (and nothing else):
+
+export class UserEditGuard implements CanDeactivate<UserEditComponent> {
+
+    canDeactivate(component: UserEditComponent): boolean {
+        return !component.done ? confirm('Do you want to leave?') : true;
+    }
+
+}
+
+----------ANS-------------
+great question and you are right regarding that. The interface approach is especially useful if you do indeed implement a more generic guard.
+

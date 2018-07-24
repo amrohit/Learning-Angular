@@ -1,0 +1,9 @@
+<!--  Which server you choose is completely independent of Angular, but the server has to be configured in a way that it serves the index.html instead of a 404 page in each case an unknown url is requested, so that Angular's router can handle the correct routing.
+
+Angular is the only part which knows our routes - we didn't define them on the server. Hence we should ensure that Angular always gets a chance of handling incoming requests.
+
+
+so jsut add   RouterModule.forRoot(appRoute, {useHash: true}) to get urls like
+localhost:4200/#/users
+localhost:4200/#/sever
+-->
