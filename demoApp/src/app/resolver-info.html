@@ -1,0 +1,11 @@
+<!-- what is Resolver?
+
+This is also a service just like CanActivate or CanDeactivate wich will allow us to run somecode before route is rendered.
+
+Difference:
+The differnce to CanActivate is that the resolver will not decide whether this route should be rendered whether the compoent should be loaded or not.
+The resolver will always rendered a component in the end but it will do some pre-loading you can say, it will fetch some data that the component will need later on.
+now the alternative is render the component or target page instantly and in the onInit method of this page, you could fetch the data and display some spinner that you are doing so. that is not alternative but if you want to load it before actually displaying the route this is how you would add such a resolver. Let say for a single server ->
+
+
+ -->
