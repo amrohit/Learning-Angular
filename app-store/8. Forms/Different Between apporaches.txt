@@ -1,0 +1,7 @@
+Template- Driven
+
+Angular interfers the Form object from the DOM
+
+Reactive
+
+Forms is created programmatically and synchronized with the DOM
