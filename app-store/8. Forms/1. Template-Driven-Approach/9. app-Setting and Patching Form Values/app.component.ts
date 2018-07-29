@@ -16,14 +16,6 @@ export class AppComponent {
 
   genders: string[] = ["male", "female"];
   defaultGender = this.genders[0];
-  user = { //javascript object
-    username: '',
-    email: '',
-    secretQues: '',
-    answer: '',
-    gender: ''
-}
-
 
   suggestUserName() {
     const suggestedName = "Superuser";
@@ -42,11 +34,6 @@ export class AppComponent {
     }
     }); // will not overwrite any data
     //also available this.sigunForm.form.setValue
-
-    //to reset specefic value
-    // this.sigunForm.form.reset({
-    //   userData: { }
-    // });
   }
 
 
@@ -63,15 +50,5 @@ export class AppComponent {
     console.log("Submitted!");
     console.log(form);
     console.log(this.sigunForm);
-    //storing the value
-    this.user.username = this.sigunForm.value.userData.username
-    this.user.email = this.sigunForm.value.userData.email
-    this.user.secretQues = this.sigunForm.value.secretQues
-    this.user.answer = this.sigunForm.value.questionAns
-    this.user.gender = this.sigunForm.value.gender
-
-    //resetting form data
-    this.sigunForm.reset();
-
   }
 }

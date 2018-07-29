@@ -42,11 +42,6 @@ export class AppComponent {
     }
     }); // will not overwrite any data
     //also available this.sigunForm.form.setValue
-
-    //to reset specefic value
-    // this.sigunForm.form.reset({
-    //   userData: { }
-    // });
   }
 
 
@@ -69,9 +64,6 @@ export class AppComponent {
     this.user.secretQues = this.sigunForm.value.secretQues
     this.user.answer = this.sigunForm.value.questionAns
     this.user.gender = this.sigunForm.value.gender
-
-    //resetting form data
-    this.sigunForm.reset();
 
   }
 }
