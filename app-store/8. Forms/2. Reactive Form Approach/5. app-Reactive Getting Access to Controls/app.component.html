@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- local refernce will no longer work here #f="" and since we dont need to get access to form using this as we created our own form in typescript using FormGroup  -->
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control" formControlName="username" >
+            <!-- we cannot use ngModel to get reference #username="ngModel" since its not setup by or register by ngModel-->
+            <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched" class="help-block">Please enter a valid username</span>
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control" [formControlName]="'email'" >
+            <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" class="help-block">Please enter a valid email</span>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio" formControlName="gender"
+              [value]="gender">{{ gender }}
+          </label>
+        </div>
+        <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block">Please enter a valid details</span>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
