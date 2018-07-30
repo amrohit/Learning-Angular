@@ -1,0 +1,45 @@
+What are pipes?
+Pipes are feature built in angular 2 which basically allows you
+to transform your output in your template
+This is the main purpose of pipes.
+
+Now there are pipes for different type of outputs and for async and sync data
+
+The basic example is following
+we have a username
+username = 'Rohit'
+
+<p> {{username}} </p>
+
+Rohit
+
+ now i want to transform it into uppercase without change in property
+
+ <p>{{ username | uppercase   }}</p>
+
+ ROHIT
+
+
+ Pipe always applied from left to right order
+ A | B | C
+ first B will be applied on the result of A
+ then  C will be applied on the result of B with A
+
+ 1. understanding pipes
+ 2. using bulit in pipes
+ 3. check out angular.io docs for more on pipes
+ 4. creating our own pipe
+  steps:
+  1. create and export class
+  2. import PipeTransform, Pipe and implement PipeTransform interface
+  3. implement transform method and return the value.
+  4. add a decorator Pipe and pass a name in the javascript object {name: 'shorten'}
+  5. dont forget to add in app.module under declarations array section.
+
+  //async pipe
+  if you return new promise to a property in our class and when you
+  output with string interplotion it will result in object when it resolve
+  cause Promise are indeed an object and its good.
+  by default angualr dont know that it resolved to a string
+  so we will use async pipe there to get string output
+  {{appStatus | async}}
