@@ -1,0 +1,21 @@
+
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+@Injectable() //we will do inject service given by angular http
+export class ServerService {
+
+    constructor(private http: Http) {}
+
+    //add a method
+    storeServers(servers: any[]) {
+
+      //post method will create only observable but not sending the request
+      //so we need to subscribe, unless u will not it will not send request
+  return this.http.post('https://ng-http-b3515.firebaseio.com/data.json', servers);
+
+
+      //according to firebase word is (post will append the  exisitng data, put will overwrite data)
+    }
+
+  }

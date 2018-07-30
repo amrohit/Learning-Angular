@@ -19,7 +19,6 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
-  appName = this.serverService.getAppName();
 
   constructor(private serverService: ServerService) {}
 
@@ -47,7 +46,6 @@ export class AppComponent {
       (servers: any[]) => {
 
         console.log(servers);
-        this.servers = servers;
 
       },
       (error) => {

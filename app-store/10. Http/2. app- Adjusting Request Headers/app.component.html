@@ -1,14 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-       <!--now the async pipe  is subscribing to the observable, hence the request is sent and hence transformed with map method and displaying below-->
-      <h3> {{ appName | async}} </h3>
       <input type="text" #serverName>
       <button class="btn btn-primary" (click)="onAddServer(serverName.value)">Add Server</button>
       <br><br>
-      <button class="btn btn-primary btn-sm" (click)="onSave()" >Save Servers</button> &nbsp; &nbsp;
-      <button class="btn btn-primary btn-sm" (click)="onGet()" >Get Servers</button> &nbsp; &nbsp;
-
+      <button class="btn btn-primary btn-sm" (click)="onSave()" >Save Servers</button>
       <hr>
       <ul class="list-group" *ngFor="let server of servers">
         <li class="list-group-item">{{ server.name }} (ID: {{ server.id }})</li>

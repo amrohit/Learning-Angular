@@ -1,6 +1,6 @@
 import { ServerService } from './server.service';
 import { Component } from '@angular/core';
-import { Response }  from '@angular/http';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +19,6 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
-  appName = this.serverService.getAppName();
 
   constructor(private serverService: ServerService) {}
 
@@ -39,21 +38,6 @@ export class AppComponent {
       console.log('Error is ' + error);
     }); //lets send the request by subscribing to observable
     //no need to subscribe, angualr will do since its only one request
-  }
-
-  onGet() {
-    this.serverService.getServers()
-    .subscribe(
-      (servers: any[]) => {
-
-        console.log(servers);
-        this.servers = servers;
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
   }
 
   private generateId() {

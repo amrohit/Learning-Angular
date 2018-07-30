@@ -1,0 +1,6 @@
+Angular 6 is currently the latest version of Angular and it deprecates the Http-access method taught in this module.
+
+What does this mean?
+
+It means that the method still works, still is secure - you can use it! But there is a better Http module to use now: HttpClient.
+

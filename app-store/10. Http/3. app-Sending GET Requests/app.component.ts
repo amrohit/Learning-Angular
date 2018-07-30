@@ -19,7 +19,6 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
-  appName = this.serverService.getAppName();
 
   constructor(private serverService: ServerService) {}
 
@@ -44,10 +43,11 @@ export class AppComponent {
   onGet() {
     this.serverService.getServers()
     .subscribe(
-      (servers: any[]) => {
+      (response: Response) => {
 
-        console.log(servers);
-        this.servers = servers;
+        const data = response.json();
+        //json method is helper function on Response(it will look in ourbody property and convert that data into array)
+        console.log(data);
 
       },
       (error) => {
