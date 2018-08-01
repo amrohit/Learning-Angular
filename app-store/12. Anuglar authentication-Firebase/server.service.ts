@@ -1,14 +1,17 @@
-import { genericServer } from "./server.service";
+
+import { Injectable } from "@angular/core";
+// import { Headers, Response } from "@angular/http";
+import { Observable, throwError } from "rxjs";
+import { map, catchError } from "rxjs/operators";
+
+import { AuthService } from './auth.service';
+
 import {
   HttpClient,
   HttpHeaders,
   HttpParams,
   HttpRequest
 } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-// import { Headers, Response } from "@angular/http";
-import { Observable, throwError } from "rxjs";
-import { map, catchError } from "rxjs/operators";
 
 export interface genericServer {
   capacity: number;
@@ -18,7 +21,7 @@ export interface genericServer {
 
 @Injectable() //we will do inject service given by angular http
 export class ServerService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   //add a method
   // storeServers(servers: genericServer[]) {
@@ -52,13 +55,16 @@ export class ServerService {
   */
 
   storeServers(servers: genericServer[]) {
+
+    const token =  this.authService.getToken();
+
     //(Advanced way, specially for uploading file or downlaoding)
     //using Progress (we discussed listenting event HttpEvents example)
     const req = new HttpRequest(
       "PUT",
       "https://ng-http-b3515.firebaseio.com/data.json",
       servers,
-      { reportProgress: true, params: new HttpParams().set("", "") }
+      { reportProgress: true, params: new HttpParams().set('auth', token) }
     );
     // .get("https://ng-http-b3515.firebaseio.com/data.json' ) //(type of request, url, data need to send)
     return this.httpClient.request(req); //returning observable
@@ -68,7 +74,12 @@ export class ServerService {
   }
 
   getServers() {
+       //getting auth token from firebase to pass authentication
+    
+   const token =  this.authService.getToken();
+
     return (
+    
       this.httpClient
         // .get<genericServer[]>("https://ng-http-b3515.firebaseio.com/data.json")
         // .get("https://ng-http-b3515.firebaseio.com/data.json", {
@@ -81,7 +92,8 @@ export class ServerService {
           "https://ng-http-b3515.firebaseio.com/data.json",
           {
             observe: "body",
-            responseType: "json"
+            responseType: "json",
+            params: new HttpParams().set('auth', token)
           }
         )
         .pipe(
@@ -109,8 +121,11 @@ export class ServerService {
   }
 
   getAppName() {
+      const token =  this.authService.getToken();
     return this.httpClient
-      .get<Promise<any>>("https://ng-http-b3515.firebaseio.com/appName.json")
+      .get<Promise<any>>("https://ng-http-b3515.firebaseio.com/appName.json", {
+       params: new HttpParams().set('auth', token) 
+      })
       .pipe(
         map(response => {
           return response;

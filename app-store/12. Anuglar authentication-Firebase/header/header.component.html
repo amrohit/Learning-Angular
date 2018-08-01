@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs">
+  <ng-template [ngIf]="!getAuth()">
+			<li role="presentation">
+				<a routerLink="/signin">SignIn( {{ getAuth() }}  )</a>
+			</li>
+  </ng-template>
+			<li role="presentation">
+				<a routerLink="/signup"> SignUp</a>
+			</li>
+			<ng-template [ngIf]="getAuth()">
+				<li role="presentation">
+					<a routerLink="">Home</a>
+				</li>
+			</ng-template>
+<ng-template [ngIf]="getAuth()">
+				<li role="presentation">
+					<a style="cursor:pointer;" (click)="onLogout()">Logout</a>
+				</li>
+			</ng-template>
+		</ul>

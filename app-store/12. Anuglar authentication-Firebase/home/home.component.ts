@@ -1,14 +1,18 @@
-import { ServerService, genericServer } from "./server.service";
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { ServerService, genericServer } from ".././server.service";
 import { Response } from "@angular/http";
+
 // import { HttpEvent, HttpEventType } from "@angular/common/http";
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent {
-  servers = [
+export class HomeComponent implements OnInit {
+
+
+ 
+servers = [
     {
       name: "Testserver",
       capacity: 10,
@@ -23,6 +27,8 @@ export class AppComponent {
   appName = this.serverService.getAppName();
 
   constructor(private serverService: ServerService) {}
+ ngOnInit() {
+  }
 
   onAddServer(name: string) {
     this.servers.push({
