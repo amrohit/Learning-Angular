@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md offset-2">
+      <h3>Tutorials</h3>
+      <ul>
+        <li (click)="delTutorial(i)" *ngFor="let tutorial of tutorials | async; let i = index">
+          <a [href]="tutorial.url" target="_blank"> {{  tutorial.name }} </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
