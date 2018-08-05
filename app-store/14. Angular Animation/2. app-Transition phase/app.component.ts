@@ -4,9 +4,7 @@ import {
   state,
   style,
   transition,
-  animate,
-  keyframes,
-  group
+  animate
 } from "@angular/animations";
 //after angular 4 these above imports belonged to @angular/core
 
@@ -33,6 +31,7 @@ import {
 
       // transition('normal => highlighted', animate(300)),
       // transition('highlighted => normal', animate(800))
+      //if we want to use same timing for above transition then use this
       transition("normal <=> highlighted", animate(300))
     ]),
     trigger("wildState", [
@@ -62,95 +61,13 @@ import {
       transition("highlighted => normal", animate(800)),
       transition("shrunken <=> *", [
         style({
-          "background-color": "orange" //starting phase
+          'background-color': 'orange' //starting phase
         }),
-        animate(
-          1000,
-          style({
-            "border-radius": "50px" //middle
-          })
-        ),
+        animate(1000, style({
+          'border-radius': '50px' //middle
+        })),
         animate(500) //ending phase transition
       ]) //this array define different phases in transitions
-    ]),
-    trigger("list1", [
-      state(
-        "in",
-        style({
-          opacity: 1,
-          "background-color": "red",
-          transform: "translateX(0)"
-        })
-      ),
-      transition("void <=> *", [
-        style({
-          opacity: 0,
-          transform: "translateX(-100px)"
-        }),
-        animate(300)
-      ]),
-      transition("* <=> void", [
-        animate(
-          2000,
-          style({
-            transform: "translateX(100px)",
-            opacity: "0"
-          })
-        )
-      ])
-    ]),
-    trigger("list2", [
-      state(
-        "in",
-        style({
-          opacity: 1,
-          transform: "translateX(0)"
-        })
-      ),
-      transition("void => *", [
-        animate(
-          1000,
-          keyframes([
-            style({
-              transform: "translateX(-100px)",
-              opacity: 0,
-              offset: 0
-            }),
-            style({
-              transform: "translateX(-50px)",
-              opacity: 0.5,
-              offset: 0.3
-            }),
-            style({
-              transform: "translateX(-20px)",
-              opacity: 1,
-              offset: 0.8
-            }),
-            style({
-              transform: "translateX(0px)",
-              opacity: 1,
-              offset: 1
-            })
-          ])
-        )
-      ]),
-      transition("* => void", [
-        group([
-          animate(
-            300,
-            style({
-              color: "red"
-            })
-          ),
-          animate(
-            800,
-            style({
-              transform: "translateX(100px)",
-              opacity: 0
-            })
-          )
-        ])
-      ])
     ])
   ]
 })
@@ -163,10 +80,7 @@ export class AppComponent {
   onAdd(item) {
     this.list.push(item);
   }
-  onDelete(item) {
-    console.log(item);
-    this.list.splice(this.list.indexOf(item), 1);
-  }
+
   onAnimate() {
     this.state == "normal"
       ? (this.state = "highlighted")
@@ -179,12 +93,5 @@ export class AppComponent {
 
   onShrink() {
     this.wildState = "shrunken";
-  }
-
-  animationStarted(event) {
-    console.log(event);
-  }
-  animationEnded(event) {
-    console.log(event);
   }
 }

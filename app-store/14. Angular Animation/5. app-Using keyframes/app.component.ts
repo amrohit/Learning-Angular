@@ -5,8 +5,7 @@ import {
   style,
   transition,
   animate,
-  keyframes,
-  group
+  keyframes
 } from "@angular/animations";
 //after angular 4 these above imports belonged to @angular/core
 
@@ -135,21 +134,19 @@ import {
         )
       ]),
       transition("* => void", [
-        group([
-          animate(
-            300,
-            style({
-              color: "red"
-            })
-          ),
-          animate(
-            800,
-            style({
-              transform: "translateX(100px)",
-              opacity: 0
-            })
-          )
-        ])
+        animate(
+          300,
+          style({
+            color: "red"
+          })
+        ),
+        animate(
+          300,
+          style({
+            transform: "translateX(100px)",
+            opacity: 0
+          })
+        )
       ])
     ])
   ]
@@ -179,12 +176,5 @@ export class AppComponent {
 
   onShrink() {
     this.wildState = "shrunken";
-  }
-
-  animationStarted(event) {
-    console.log(event);
-  }
-  animationEnded(event) {
-    console.log(event);
   }
 }

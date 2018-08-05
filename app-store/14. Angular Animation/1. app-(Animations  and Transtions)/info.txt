@@ -1,0 +1,5 @@
+You will find these below functionality 
+1. Animations Trigger and State
+2. Switching between states
+3. Transistions
+4. Advanced Transitions
