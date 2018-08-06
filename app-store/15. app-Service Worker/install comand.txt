@@ -1,0 +1,30 @@
+ng add @angular/pwa
+ng add@angular/pwa@0.6.8
+
+ng build --prod
+
+npm install -g http-server
+
+http-server -p 7070
+
+for static
+"urls": [
+        "https://fonts.googleapis.com/css?family=Oswald:300,700"
+      ]
+
+for dynamic data
+"dataGroups": [
+    {
+      "name": "posts",
+      "urls": [
+        "https://jsonplaceholder.typicode.com/posts"
+      ],
+      "version": 2,
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "12h",
+        "timeout": "10s",
+        "strategy": "freshness" or "performance"
+      }
+    }
+  ]
